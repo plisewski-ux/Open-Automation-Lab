@@ -17,3 +17,11 @@ Projekt Open Automation Lab ma być długoterminowym środowiskiem R&D.
 - Bezpieczeństwo przed wygodą
 - Najpierw zrozumienie, potem implementacja
 - Każdy etap kończy się działającym rezultatem
+
+## Scope
+
+Niniejsze zasady obowiązują wszystkie elementy projektu Open Automation Lab.
+
+## Related Documents
+
+- PROJECT.md
