@@ -33,7 +33,17 @@ This runbook applies to every Open Automation Lab host.
 
 # Manual Procedure
 
-## Step 1 – Create the platform root directory
+## Step 1 – Verify the platform root directory
+
+```bash
+ls -ld /opt/oal
+```
+
+If the directory does not exist, continue with the next step.
+
+---
+
+## Step 2 – Create the platform root directory
 
 ```bash
 sudo mkdir -p /opt/oal
@@ -41,7 +51,7 @@ sudo mkdir -p /opt/oal
 
 ---
 
-## Step 2 – Create the standard directory layout
+## Step 3 – Create the standard directory layout
 
 ```bash
 sudo mkdir -p \
@@ -55,9 +65,9 @@ sudo mkdir -p \
 
 ---
 
-## Step 3 – Set ownership
+## Step 4 – Set ownership
 
-The platform directories are managed by administrators.
+Platform directories are owned by the operating system.
 
 ```bash
 sudo chown -R root:root /opt/oal
@@ -65,15 +75,15 @@ sudo chown -R root:root /opt/oal
 
 ---
 
-## Step 4 – Configure permissions
+## Step 5 – Configure permissions
 
 ```bash
-sudo chmod -R 775 /opt/oal
+sudo chmod -R 755 /opt/oal
 ```
 
 ---
 
-## Step 5 – Verify the directory structure
+## Step 6 – Verify the directory structure
 
 ```bash
 tree /opt/oal
@@ -93,28 +103,29 @@ Expected output:
 
 ---
 
-## Step 6 – Verify ownership
+## Step 7 – Verify ownership
 
 ```bash
-ls -ld /opt/oal/*
+ls -ld /opt/oal /opt/oal/*
 ```
 
 Expected owner:
 
 ```text
-root docker
+root root
 ```
 
 ---
 
 # Verification
 
-Verify:
+Verify that:
 
-- platform root exists
-- all standard directories exist
-- ownership is correct
-- permissions are correct
+- the platform root directory exists,
+- all standard directories have been created,
+- ownership is set to `root:root`,
+- permissions are set to `755`,
+- the directory structure matches ADR-004.
 
 ---
 
@@ -132,9 +143,9 @@ Rollback is only permitted before any production services have been deployed.
 
 # Troubleshooting
 
-## tree command not found
+## `tree` command not found
 
-Install:
+Install the package:
 
 ```bash
 sudo apt install tree
@@ -144,13 +155,19 @@ sudo apt install tree
 
 ## Permission denied
 
-Verify the current user belongs to the `docker` group.
+Verify that the current user has administrative privileges.
 
 ```bash
 id
 ```
 
-Reconnect the SSH session if necessary.
+Verify:
+
+```bash
+groups
+```
+
+The administrator account should belong to the `sudo` group.
 
 ---
 
@@ -160,7 +177,7 @@ Reserved.
 
 Future implementation:
 
-```
+```text
 automation/bash/RB-004-platform-filesystem-layout.sh
 ```
 
@@ -170,7 +187,7 @@ automation/bash/RB-004-platform-filesystem-layout.sh
 
 The platform filesystem should be established before deploying the first service.
 
-This ensures that every service follows the same directory structure and backup strategy.
+A consistent directory layout simplifies deployment, maintenance, backup and disaster recovery.
 
 ---
 
@@ -178,14 +195,16 @@ This ensures that every service follows the same directory structure and backup 
 
 The runbook is considered complete when:
 
-- `/opt/oal` exists
-- all standard directories have been created
-- ownership is correct
-- permissions are verified
-- directory structure matches ADR-004
+- `/opt/oal` exists,
+- all standard directories have been created,
+- ownership is `root:root`,
+- permissions are correctly configured,
+- the directory structure complies with ADR-004.
+
+---
 
 # Idempotency
 
-The procedure is idempotent.
+This procedure is idempotent.
 
-Running this runbook multiple times does not modify an already compliant platform.
+Running the runbook multiple times does not modify an already compliant platform.

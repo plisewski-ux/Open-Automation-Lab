@@ -1,12 +1,10 @@
+# Foundational Principles
+
+1. Understand before implementing.
+2. Document before automating.
+3. Automate only what you understand.
+
 # Engineering Principles
-
-## Core Principles
-
->Understand before implementing.
->
->Document before automating.
->
->Automate only what you understand.
 
 ## Documentation First
 
