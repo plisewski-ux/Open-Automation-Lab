@@ -103,3 +103,18 @@ Reason:
 ## Conclusion
 
 These states are expected and do not indicate a problem with the platform.
+
+## Platform Root
+
+Platform Root:
+
+/opt/oal
+
+Standard directories:
+
+- stacks
+- data
+- config
+- backups
+- scripts
+- shared

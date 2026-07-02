@@ -16,7 +16,7 @@ The project combines infrastructure engineering, containerization, automation, A
 
 ## Current Sprint
 
-**Sprint 2 – Docker Engine**
+**Sprint 3 – Platform Filesystem**
 
 ## Overall Progress
 
@@ -54,7 +54,7 @@ The project combines infrastructure engineering, containerization, automation, A
 | ADR-001 | VPS Platform Selection | ✅ |
 | ADR-002 | SSH Key Strategy | ✅ |
 | ADR-003 | Container Runtime | ✅ |
-| ADR-004 | Platform Filesystem Layout | 🚧 Draft |
+| ADR-004 | Platform Filesystem Layout | ✅ |
 
 ---
 
@@ -67,7 +67,7 @@ The project combines infrastructure engineering, containerization, automation, A
 | Dedicated Administrator Account | ✅ |
 | Docker Engine | ✅ |
 | Docker Compose Plugin | ✅ |
-| Platform Filesystem Layout | 🚧 |
+| Platform Filesystem Layout | ✅ |
 | Reverse Proxy | ⏳ |
 | First Service | ⏳ |
 
@@ -123,4 +123,12 @@ The project follows the engineering principles defined in:
 
 # Last Updated
 
-2026-07-02
+
+# Releases
+
+| Version| Status  | Description |
+|--------|:------: |-------------|
+| v0.1.0 | Planned | Foundation completed |
+| v0.2.0 | Planned | Reference Platform |
+| v0.3.0 | Planned | Core Services |
+| v1.0.0 | Future  | Production-ready automation platform |
