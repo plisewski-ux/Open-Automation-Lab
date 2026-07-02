@@ -10,55 +10,67 @@ Accepted
 
 ## Context
 
-Open Automation Lab będzie rozwijany przez dłuższy czas i będzie obejmował
-wiele niezależnych środowisk oraz usług wymagających dostępu SSH.
+Open Automation Lab will consist of multiple environments requiring secure SSH administration.
 
-Należy przyjąć jednolitą strategię zarządzania kluczami SSH.
+A consistent authentication strategy is required to simplify management while maintaining strong security.
 
 ## Decision
 
-Przyjęto następujące zasady:
+SSH authentication follows these principles:
 
-- wykorzystywany będzie algorytm ED25519,
-- każde środowisko otrzymuje własną parę kluczy,
-- klucze posiadają jednoznaczne nazwy,
-- prywatne klucze nigdy nie są kopiowane pomiędzy urządzeniami,
-- administratorzy posiadają własne konta systemowe,
-- logowanie użytkownika root zostanie wyłączone po zakończeniu migracji na logowanie kluczem SSH.
+- ED25519 is the standard key algorithm.
+- Every environment has its own dedicated key pair.
+- Private keys are never copied between devices.
+- Keys follow a consistent naming convention.
+- Administrators use individual user accounts.
+- Direct root login will be disabled after the migration to SSH key authentication has been verified.
 
-### Nazewnictwo
+## Reference
 
-Przykładowe nazwy kluczy:
+Example key names:
 
-- id_ed25519_openautomationlab
-- id_ed25519_github
-- id_ed25519_homelab
-- id_ed25519_router
+```text
+id_ed25519_openautomationlab
+id_ed25519_github
+id_ed25519_homelab
+id_ed25519_router
+```
+
+## Decision Drivers
+
+- Strong authentication
+- Least privilege
+- Credential isolation
+- Simplified key rotation
+- Easier auditing
+
+## Alternatives Considered
+
+### Shared SSH key across all environments
+
+Rejected.
+
+Compromising a single private key would require replacing credentials across every managed environment.
 
 ## Consequences
 
 ### Advantages
 
-- możliwość niezależnego unieważniania kluczy,
-- prostsze zarządzanie dostępem,
-- większe bezpieczeństwo,
-- łatwiejszy audyt.
+- Independent credential management
+- Improved security
+- Easier auditing
+- Safer key rotation
 
 ### Disadvantages
 
-- większa liczba kluczy do zarządzania,
-- konieczność prowadzenia dokumentacji.
+- More keys to manage
+- Documentation must remain accurate
 
-## Alternatives Considered
+## Related Documents
 
-### Jeden wspólny klucz SSH
-
-Odrzucono.
-
-Powód:
-
-Utrata jednego klucza wymuszałaby wymianę dostępu do wszystkich środowisk.
+- ADR-000 – Engineering Principles Adoption
+- RB-001 – SSH Configuration
 
 ## Review
 
-Strategia będzie weryfikowana przy dodawaniu kolejnych środowisk wymagających dostępu SSH.
+Review this strategy whenever new environments or administrators are added.

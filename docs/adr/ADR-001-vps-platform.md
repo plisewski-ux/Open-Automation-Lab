@@ -1,4 +1,4 @@
-# ADR-001 – VPS Platform Selection
+# ADR-001 - VPS Platform Selection
 
 ## Status
 
@@ -12,86 +12,71 @@ Accepted
 
 Open Automation Lab requires a permanent environment for research, development, testing and hosting automation services.
 
-The platform must meet the following requirements:
+The hosting platform must provide:
 
-- low annual operating cost,
-- full administrative (root) access,
+- low operating cost,
+- full administrative access,
 - Docker compatibility,
-- 24/7 availability,
-- ability to upgrade resources without service migration,
-- suitable for long-term experimentation rather than high availability.
-
-Several VPS providers were considered before selecting the initial hosting platform.
+- continuous availability,
+- resource scalability,
+- suitability for long-term experimentation.
 
 ## Decision
 
-The project will initially use the **Mikrus VPS 2.1** plan as the hosting platform.
-
-The selected platform provides sufficient resources for the first phases of the project while keeping operational costs extremely low.
-
-The decision is intentionally focused on learning, experimentation and architecture validation rather than production-scale workloads.
+The project uses the Mikrus VPS 2.1 plan as the initial hosting platform.
 
 ## Decision Drivers
 
-The decision was primarily influenced by the following factors:
-
-- very low annual cost,
-- full Linux administration capabilities,
-- Docker support,
-- easy upgrade path,
-- active Polish community,
-- good fit for personal R&D projects.
+- Very low annual cost
+- Full Linux administration capabilities
+- Docker compatibility
+- Easy upgrade path
+- Active community
+- Excellent fit for personal R&D
 
 ## Alternatives Considered
 
 ### Hetzner Cloud
 
-**Rejected**
+Rejected.
 
-Excellent infrastructure and scalability, but significantly higher operational cost than required for the initial project phase.
+Provides excellent infrastructure but exceeds the project's initial requirements and budget.
 
 ### OVH Cloud
 
-**Rejected**
+Rejected.
 
-Reliable platform, but provides no significant advantage for a small personal automation laboratory.
+Reliable platform with no significant advantage for the current project scope.
 
 ### Oracle Cloud Free Tier
 
-**Rejected**
+Rejected.
 
-Although attractive from a cost perspective, resource availability is unpredictable and long-term service continuity cannot be guaranteed.
+Long-term resource availability cannot be guaranteed.
 
 ## Consequences
 
 ### Advantages
 
-- extremely low operational cost,
-- fast project start,
-- suitable environment for experimentation,
-- sufficient resources for initial Docker-based services,
-- upgrade path without redesigning the architecture.
+- Low operational cost
+- Rapid project start
+- Docker-ready environment
+- Upgrade path without redesign
+- Suitable for experimentation
 
 ### Disadvantages
 
-- limited RAM,
-- limited disk capacity,
-- not intended for high availability,
-- future project growth may require migration to a larger VPS plan.
+- Limited RAM
+- Limited storage
+- Not designed for production workloads
+- Future growth may require migration
 
 ## Related Documents
 
-- ADR-000 – Project Principles
+- ADR-000 – Engineering Principles Adoption
+- ADR-003 – Container Runtime
 - PROJECT.md
-- RB-001 – SSH Configuration
 
 ## Review
 
-This decision should be reviewed after deploying the initial platform components, including Docker, reverse proxy and n8n.
-
-The platform should be upgraded if one or more of the following conditions become true:
-
-- sustained memory usage exceeds approximately 75%,
-- available disk space becomes insufficient,
-- CPU becomes a recurring bottleneck,
-- additional services cannot be deployed without resource constraints.
+Review this decision whenever platform requirements exceed the capabilities of the selected VPS plan.
